@@ -1,26 +1,74 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Computación Gráfica - EULALIA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Línea Dinámica en Plano Cartesiano</title>
 </head>
 <body>
-    <h1>computación gráfica</h1>
-    <h1>Eulalia Condori Nayhua</h1>
-    <h2>Mis Prácticas de Computación Gráfica</h2>
 
-    <ul>
-        <li><a href="graficodebarras.html"> Gráfico de Barras</a></li>
-        <li><a href="ejederecha.html">Ejercicio 4 Función Matemática (Arriba)</a></li>
-        <li><a href="proyectox.html">Linea Dinamica</a></li>
-        <li><a href="circulo.html">Linea Dinamica</a></li>
-        <li><a href="cuadradotriangulo.html">Linea Dinamica</a></li>
-        <li><a href="ejes.html">Linea Dinamica</a></li>
-        <li><a href="lineas.html">Linea Dinamica</a></li>
-        <li><a href="ejeizquierda.html">Linea Dinamica</a></li>
-        <li><a href="ejenegativo.html">Linea Dinamica</a></li>
-        <li><a href="index.html">Linea Dinamica</a></li>
+<h2>Línea Dinámica  DESARROLLADO POR EULALIA CONDORI NAYHUA </h2>
+<canvas id="myCanvas" width="1000" height="600" style="border: 1px solid black;"></canvas>
 
-        </ul>
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var xstart = 0;
+var xend = 800;
+var step  = 0.1;
+var time = 0;
+
+// función para dibujar ejes
+function drawAxes() {
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1;
+
+    // Eje X (horizontal)
+    ctx.moveTo(0, canvas.height / 2);
+    ctx.lineTo(canvas.width, canvas.height / 2);
+
+    // Eje Y (vertical)
+    ctx.moveTo(canvas.width / 2, 0);
+    ctx.lineTo(canvas.width / 2, canvas.height);
+
+    ctx.stroke();
+}
+
+// función para dibujar el gráfico
+function drawGraph() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // dibujar ejes primero
+    drawAxes();
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 2;
+
+    for (var x = xstart; x < xend; x += step) {
+        var y = Math.sin(x * 0.01 + time);
+
+        if (x === xstart) {
+            ctx.moveTo(x, canvas.height/2 - y * 100);
+        } else {
+            ctx.lineTo(x, canvas.height/2 - y * 100);
+        }
+    }
+
+    ctx.stroke();
+}
+
+// animación
+function animate() {
+    drawGraph();
+    time += 0.08;
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
 </body>
 </html>
