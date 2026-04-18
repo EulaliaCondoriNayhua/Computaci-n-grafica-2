@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUADRADO Y TRIÁNGULO</title>
+</head>
+<body>
+    <h2>CREAR UN CUADRADO Y UN TRIÁNGULO</h2>
+
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.strokeStyle = "black";
+
+        //  Marco grande
+        ctx.beginPath();
+        ctx.rect(20, 20, 460, 460);
+        ctx.stroke();
+
+        // Línea horizontal
+        ctx.beginPath();
+        ctx.moveTo(20, 250);
+        ctx.lineTo(480, 250);
+        ctx.stroke();
+
+        //  Cuadrado (relleno)
+        ctx.beginPath();
+        ctx.rect(200, 80, 100, 100);
+        ctx.fillStyle = "lightblue"; // color
+        ctx.fill();
+        ctx.stroke();
+
+        //  Triángulo (relleno)
+        ctx.beginPath();
+        ctx.moveTo(250, 300);
+        ctx.lineTo(200, 400);
+        ctx.lineTo(300, 400);
+        ctx.closePath();
+        ctx.fillStyle = "lightgreen"; // color
+        ctx.fill();
+        ctx.stroke();
+    </script>
+
+</body>
+</html>

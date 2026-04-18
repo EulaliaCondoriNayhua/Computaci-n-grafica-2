@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    const
+  </style>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="500" height="500" style="border:4px solid black;"></canvas>
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // --- DIBUJAR LOS EJES ---
+    ctx.beginPath();
+    // Eje X
+    ctx.moveTo(0, 250);
+    ctx.lineTo(500, 250);
+    // Eje Y
+    ctx.moveTo(250, 0);
+    ctx.lineTo(250, 500);
+
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(0, 250);
+
+    for (var x = -250; x < 250; x++) {
+      var y = -Math.pow(x, 2) / 100; // Función para que se ajuste al canvas
+      ctx.lineTo(250 + x, 250 - y);
+    }
+
+    ctx.strokeStyle = 'blue';
+    ctx.stroke();
+  </script>
+</body>
+
+</html>
