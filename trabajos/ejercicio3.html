@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Curva Dinámica Coseno</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Curva Dinámica y = cos(x) - DESARROLLADO POR EULALIA CONDORI NAYHUA</h2>
+<canvas id="myCanvas" width="1000" height="600" style="border:1px solid black;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var xstart = 0;
+var xend = 800;
+var step = 0.1;
+var time = 0;
+
+// dibujar ejes
+function drawAxes() {
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1;
+
+    // eje X
+    ctx.moveTo(0, canvas.height / 2);
+    ctx.lineTo(canvas.width, canvas.height / 2);
+
+    // eje Y
+    ctx.moveTo(canvas.width / 2, 0);
+    ctx.lineTo(canvas.width / 2, canvas.height);
+
+    ctx.stroke();
+}
+
+// dibujar curva coseno
+function drawGraph() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawAxes();
+
+    ctx.beginPath();
+    ctx.strokeStyle = "green";
+    ctx.lineWidth = 2;
+
+    for (var x = xstart; x < xend; x += step) {
+
+        // función coseno dinámica
+        var y = Math.cos(x * 0.01 + time);
+
+        if (x === xstart) {
+            ctx.moveTo(x, canvas.height/2 - y * 100);
+        } else {
+            ctx.lineTo(x, canvas.height/2 - y * 100);
+        }
+    }
+
+    ctx.stroke();
+}
+
+// animación cada segundo
+setInterval(function() {
+    drawGraph();
+    time += 0.3; // desplazamiento de la curva
+}, 1000);
+
+// dibujo inicial
+drawGraph();
+
+</script>
+
+</body>
+</html>

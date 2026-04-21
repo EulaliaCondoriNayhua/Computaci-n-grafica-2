@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Puntos en Movimiento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Gráfico de Puntos en Movimiento - DESARROLLADO POR EULALIA CONDORI NAYHUA</h2>
+<canvas id="myCanvas" width="1000" height="600" style="border:1px solid black;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+// arreglo de puntos (x, y)
+var puntos = [];
+
+// crear 5 puntos iniciales aleatorios
+for (var i = 0; i < 5; i++) {
+    puntos.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height
+    });
+}
+
+// función para dibujar ejes
+function drawAxes() {
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1;
+
+    // eje X
+    ctx.moveTo(0, canvas.height / 2);
+    ctx.lineTo(canvas.width, canvas.height / 2);
+
+    // eje Y
+    ctx.moveTo(canvas.width / 2, 0);
+    ctx.lineTo(canvas.width / 2, canvas.height);
+
+    ctx.stroke();
+}
+
+// función para dibujar puntos
+function drawPoints() {
+    for (var i = 0; i < puntos.length; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = "red";
+
+        ctx.arc(puntos[i].x, puntos[i].y, 5, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// función para actualizar posiciones
+function updatePoints() {
+    for (var i = 0; i < puntos.length; i++) {
+        puntos[i].x = Math.random() * canvas.width;
+        puntos[i].y = Math.random() * canvas.height;
+    }
+}
+
+// función principal
+function drawGraph() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawAxes();
+    drawPoints();
+}
+
+// actualizar cada segundo
+setInterval(function() {
+    updatePoints();
+    drawGraph();
+}, 1000);
+
+// dibujo inicial
+drawGraph();
+
+</script>
+
+</body>
+</html>

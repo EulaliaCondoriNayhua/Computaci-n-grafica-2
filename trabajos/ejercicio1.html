@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Barras Dinámico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Gráfico de Barras Dinámico - DESARROLLADO POR EULALIA CONDORI NAYHUA</h2>
+<canvas id="myCanvas" width="1000" height="600" style="border:1px solid black;"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+// arreglo con 5 valores
+var valores = [50, 70, 30, 90, 60];
+
+// función para generar valores aleatorios
+function generarValores() {
+    for (var i = 0; i < valores.length; i++) {
+        valores[i] = Math.floor(Math.random() * 91) + 10; // entre 10 y 100
+    }
+}
+
+// función para dibujar ejes
+function drawAxes() {
+    ctx.beginPath();
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 1;
+
+    // eje X
+    ctx.moveTo(50, canvas.height - 50);
+    ctx.lineTo(canvas.width - 50, canvas.height - 50);
+
+    // eje Y
+    ctx.moveTo(50, 50);
+    ctx.lineTo(50, canvas.height - 50);
+
+    ctx.stroke();
+}
+
+// función para dibujar barras
+function drawBars() {
+    var anchoBarra = 100;
+    var espacio = 40;
+
+    for (var i = 0; i < valores.length; i++) {
+        var altura = valores[i] * 4; // escala
+
+        var x = 80 + i * (anchoBarra + espacio);
+        var y = canvas.height - 50 - altura;
+
+        // dibujar barra
+        ctx.fillStyle = "blue";
+        ctx.fillRect(x, y, anchoBarra, altura);
+
+        // mostrar valor encima
+        ctx.fillStyle = "black";
+        ctx.fillText(valores[i], x + 35, y - 10);
+    }
+}
+
+// función principal
+function drawGraph() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawAxes();
+    drawBars();
+}
+
+// actualizar cada segundo
+setInterval(function() {
+    generarValores();
+    drawGraph();
+}, 1000);
+
+// dibujo inicial
+drawGraph();
+
+</script>
+
+</body>
+</html>
