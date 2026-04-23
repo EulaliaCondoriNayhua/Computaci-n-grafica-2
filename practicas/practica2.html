@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Rotación 3D</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+#info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255,255,255,0.8);
+    padding: 10px;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="info">
+    <b>Practica 2:</b><br>
+    Rotación continua en X y Y
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x20552a);
+
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// cubo
+const geometry = new THREE.BoxGeometry(1,1,1);
+const material= [
+    new THREE.MeshBasicMaterial({ color: 0xff0000 }), // lado 1
+    new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // lado 2
+    new THREE.MeshBasicMaterial({ color: 0x0000ff }), // lado 3
+    new THREE.MeshBasicMaterial({ color: 0xffff00 }), // lado 4
+    new THREE.MeshBasicMaterial({ color: 0xff00ff }), // arriba
+    new THREE.MeshBasicMaterial({ color: 0x00ffff })  // abajo
+];
+const cubo = new THREE.Mesh(geometry, material);
+scene.add(cubo);
+
+// luz
+const light = new THREE.PointLight(0xffffff,1);
+light.position.set(5,5,5);
+scene.add(light);
+
+camera.position.z = 5;
+
+function animate(){
+    requestAnimationFrame(animate);
+
+    cubo.rotation.x += 0.01;
+    cubo.rotation.y += 0.01;
+
+    renderer.render(scene, camera);
+}
+animate();
+
+// responsive
+window.addEventListener('resize', ()=>{
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+
+</body>
+</html>
