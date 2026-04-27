@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Malla Triangular poligonal</title>
+    <style>
+        body {
+            margin: 0;
+            background: #6c8a9b;
+            font-family: Arial;
+        }
+
+        .canvas-container {
+            width: 700px;
+            margin: 30px auto;
+            background: #e6e6e6;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="canvas-container">
+    <canvas id="canvas" width="700" height="450"></canvas>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+// Tamaño de la malla
+const filas = 20;
+const columnas = 25;
+const espacio = 20;
+
+// Centro
+const inicioX = 100;
+const inicioY = 80;
+
+let puntos = [];
+
+// Crear vértices con ligera deformación (para que no sea plano)
+for (let i = 0; i <= filas; i++) {
+    let fila = [];
+    for (let j = 0; j <= columnas; j++) {
+
+        let x = inicioX + j * espacio;
+        
+        // deformación tipo onda (simula forma orgánica)
+        let y = inicioY + i * espacio + Math.sin(j * 0.5) * 10;
+
+        fila.push({x, y});
+    }
+    puntos.push(fila);
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Dibujar triángulos
+    for (let i = 0; i < filas; i++) {
+        for (let j = 0; j < columnas; j++) {
+
+            let p1 = puntos[i][j];
+            let p2 = puntos[i][j+1];
+            let p3 = puntos[i+1][j];
+            let p4 = puntos[i+1][j+1];
+
+            // Triángulo 1
+            drawTriangle(p1, p2, p3);
+
+            // Triángulo 2
+            drawTriangle(p2, p4, p3);
+        }
+    }
+}
+
+// Función para dibujar triángulos
+function drawTriangle(a, b, c) {
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.lineTo(c.x, c.y);
+    ctx.closePath();
+
+    ctx.strokeStyle = "#444";
+    ctx.stroke();
+}
+
+draw();
+</script>
+
+</body>
+</html>
