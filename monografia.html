@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CURVAS PARAMETRICAS </title>
+    <link rel="stylesheet" href="monografia.css">
+</head>
+<body>
+
+    <!-- ENCABEZADO CON LOGO -->
+    <header class="encabezado">
+        <img src="img/utea.jpg" alt="Logo Universidad">
+        <div>
+            <h1>TRABAJO DE INVESTIGACION  </h1>
+            <p>CURSO: Computación Gráfica</p>
+            <p>ESTUDIANTE: Eulalia Condori Nayhua </p>
+            <p>2026</p>
+        </div>
+    </header>
+
+   
+    <main class="contenido">
+
+        <section>
+            <h2>1. Curvas Paramétricas</h2>
+            <img src="img/curva.png">
+            <p>
+                Las curvas paramétricas son una forma de representar curvas en el plano (o en el espacio) usando un parámetro, normalmente llamado t.
+
+En lugar de escribir y en función de x, se escriben ambas variables en función de t:
+
+x=f(t),y=g(t)
+
+            </p>
+        </section>
+
+        <section>
+            <h2> Cálculo de la derivada de una curva paramétrica</h2>
+
+            <img src="img/para.jpg">
+            <p>Calcule la derivada 
+𝑑⁢𝑦
+𝑑⁢𝑥
+ 
+ para cada una de las siguientes curvas planas definidas paramétricamente y ubique cualquier punto crítico en sus respectivos gráficos.
+
+𝑥⁡(𝑡)=𝑡2−3,𝑦⁡(𝑡)=2⁢𝑡−1,−3≤𝑡≤4
+𝑥⁡(𝑡)=2⁢𝑡+1,𝑦⁡(𝑡)=𝑡3−3⁢𝑡+4,–2≤𝑡≤5
+            𝑥⁡(𝑡)=5⁢cos⁡𝑡,𝑦⁡(𝑡)=5sen𝑡,0≤𝑡≤2⁢𝜋</p>
+
+            <h3>Funciones vectoriales de un parametro
+</h3>
+            <img src="img/funcion.png">
+            <p>Una funcion con valores vectoriales, o simplemente funcion vectorial, es una funcion cuyo rango o imagen es un conjunto de vectores.</p>
+
+            <h3>Interpretación geométrica </h3>
+            <img src="img/inter.jpg">
+            <p>A medida que t aumenta:
+
+Se recorre la curva, 
+Se puede saber dirección, 
+Se puede saber velocidad
+
+. Esto es algo que una función normal y=f(x) no muestra.</p>
+
+        </section>
+
+        <section>
+            <h2>Vector posición</h2>
+            <img src="img/vector.png">
+            <p>Una curva paramétrica también se escribe como vector:
+
+r
+(t)=(x(t),y(t))
+
+Ejemplo:
+
+r (t)=(t,t 2)
+
+Esto describe la trayectoria de una partícula.
+            </p>
+        </section>
+
+        <section>
+            <h2></h2>
+            <img src="img/fn.png" >
+            <p>
+                Desde el punto de vista del movimiento, una curva paramétrica permite calcular magnitudes físicas importantes. A partir del vector posición 
+r
+(t), se obtiene la velocidad derivando respecto a t y la aceleración con la segunda derivada. 
+Además, la pendiente de la curva se calcula con la relación entre derivadas, lo que permite conocer la inclinación en cada punto:
+dx dy = dt dx dt dy
+Esto hace que las curvas paramétricas sean muy útiles para analizar trayectorias en física y geometría.
+            </p>
+        </section>
+        <section>
+            <img src="img/tip.jpg">
+            <p>Existen distintos tipos de curvas paramétricas como rectas, circunferencias, elipses, espirales e incluso curvas más complejas, 
+                y también pueden extenderse a tres dimensiones agregando una función z(t), como en el caso de una hélice. Su principal ventaja es que permiten 
+                representar movimientos y formas que no pueden describirse fácilmente con funciones tradicionales, 
+                por lo que se aplican en áreas como videojuegos, animación, ingeniería y simulaciones de movimiento.</p>
+        </section>
+
+    </main>
+
+
+    <main class="contenido">
+
+        <section>
+            <h2>2. Mallas poligonales </h2>
+            <img src="img/malla.jpg">
+            <p>
+               Una malla poligonal (del inglés: polymesh o mesh) es una superficie creada mediante un método tridimensional 
+               generado por sistemas de vértices posicionados en un espacio virtual con datos de coordenadas propios.
+            </p>
+        </section>
+
+        <section>
+            <h2> Características</h2>
+            <p>Existen diversos sistemas y algoritmos de creación. Una malla se construye a partir de un mínimo de 3 vértices llamada cara que es la unidad básica de todo polígono tridimensional.
+
+Las reglas del modelado tridimensional usan de 4 vértices (quads, poly) a más de 4 (poly) vértices para un efectivo control de superficies, ocultando la arista media de un polígono de 4 vértices aunque en realidad este se componga de dos caras de tres vértices cada una.
+
+Este sistema se ha hecho popular debido al uso de la subdivisión que genera superficies fluidas y orgánicas imitando las NURBS que son otro sistema de generación de superficies no poligonales.</p>
+
+            <h3>Niveles de complejidad
+</h3>
+            
+            <h3>Polígonos bajos</h3>
+            <p>Son modelos que su composición de polígonos es baja lo cual es probable que el modelo tenga un muy mal detalle y no se obtenga un resultado favorable. 
+                Estos modelos se usan para optimizar el rendimiento del videojuego y el "Low-Poly" es efectivo en modelos que no requieren mucho detalle.</p>
+            
+                <h3>Polígonos medios</h3>
+           
+            <p>Son modelos que su composición de polígonos es media y logran dar mejor detalle que los "Low-Poly" aunque su velocidad de procesamiento es más tardada. 
+                Estos modelos son más usados para modelos que requieren un poco más de detalle.</p>
+             <h3>Polígonos altos</h3>
+            
+            <p>Son modelos que su composición de polígonos es alta y llegan a dar un detalle magnífico pero su procesamiento es más complejo y tiende a ralentizar el ordenador, 
+                dependiendo de la potencia con que el hardware de la computadora o consola cuente. 
+                Estos modelos son usados para modelos que precisan de un buen grado de detalle.</p>
+
+        </section>
+
+        <section>
+            <h2>3. Aplicaciones</h2>
+            <p>
+                Cuando se sombrean objetos delgados y largos, utilice el valor 0.0. Esto permite proporciones infinitas. Controle la suavidad de la malla con otros parámetros.
+            </p>
+        </section>
+
+        <section>
+            <h2>Las mallas vértice-vértice</h2>
+            <p>Representan un objeto como un conjunto de vértices conectados entre sí. Esta es la representación más simple, pero no se usa ampliamente, ya que la información de caras y aristas es implícita. Por lo tanto, 
+                es necesario recorrer los datos para generar una lista de caras para la renderización. Además, las operaciones sobre aristas y caras no son fáciles de realizar.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- BOTÓN VOLVER -->
+    <footer>
+        <a href="index.html">← Volver al inicio</a>
+    </footer>
+
+</body>
+</html>
